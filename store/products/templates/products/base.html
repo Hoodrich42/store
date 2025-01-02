@@ -1,0 +1,212 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href='{% static "css/owl.carousel.min.css" %}'>
+    <link rel="shortcut icon" href='{% static "img/favicon.png" type="image/png" %}'>
+    <link rel="stylesheet" type='{% static "text/css" href="css/bootstrap-slider.css" %}'>
+    <link rel="stylesheet" href='{% static "css/slick.css" %}'>
+    <link rel="stylesheet" href='{% static "css/slick-theme.css" %}'>
+    <link rel="stylesheet" type="text/css" href='{% static "css/style.css" %}'>
+    {% block css %}{% endblock %}
+</head>
+
+<body>
+    <!--push menu cart -->
+    <div class="pushmenu pushmenu-left cart-box-container">
+        <div class="cart-list">
+            <span class="close-left js-close">x</span>
+            <h3 class="cart-title">Your Cart</h3>
+            <ul class="list">
+                <li>
+                    <a href="#" title="" class="cart-product-image"><img src='{% static "img/cart_1.jpg" %}' alt="Product"></a>
+                    <div class="text">
+                        <p class="product-name">Rose Gold Natural Band Watch</p>
+                        <p class="product-price">$295.00</p>
+                        <div class="quantity input-group">
+                            <button type="button" class="quantity-left-minus btn btn-number js-minus" data-type="minus" data-field="">
+                                <span class="minus-icon">-</span>
+                            </button>
+                            <input type="text" name="number" value="1" class="product_quantity_number js-number">
+                            <button type="button" class="quantity-right-plus btn btn-number js-plus" data-type="plus" data-field="">
+                                <span class="plus-icon">+</span>
+                            </button>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </li>
+                <li>
+                    <a href="#" title="" class="cart-product-image"><img src='{% static "img/cart_1.jpg" %}' alt="Product"></a>
+                    <div class="text">
+                        <p class="product-name">Dot Drop Earrings</p>
+                        <p class="product-price">$295.00</p>
+                        <div class="quantity input-group">
+                            <button type="button" class="quantity-left-minus btn btn-number js-minus" data-type="minus" data-field="">
+                                <span class="minus-icon">-</span>
+                            </button>
+                            <input type="text" name="number" value="1" class="product_quantity_number js-number">
+                            <button type="button" class="quantity-right-plus btn btn-number js-plus" data-type="plus" data-field="">
+                                <span class="plus-icon">+</span>
+                            </button>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </li>
+                <li>
+                    <a href="#" title="" class="cart-product-image"><img src='{% static "img/cart_1.jpg" %}' alt="Product"></a>
+                    <div class="text">
+                        <p class="product-name">Dot Drop Earrings</p>
+                        <p class="product-price">$295.00</p>
+                        <div class="quantity input-group">
+                            <button type="button" class="quantity-left-minus btn btn-number js-minus" data-type="minus" data-field="">
+                                <span class="minus-icon">-</span>
+                            </button>
+                            <input type="text" name="number" value="1" class="product_quantity_number js-number">
+                            <button type="button" class="quantity-right-plus btn btn-number js-plus" data-type="plus" data-field="">
+                                <span class="plus-icon">+</span>
+                            </button>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </li>
+            </ul>
+            <div class="cart-bottom">
+                <p class="total"><span>Subtotal</span> $560.00</p>
+                <div class="cart-button">
+                    <a class="checkout" href="#" title="">Check out</a>
+                    <a class="edit-cart" href="#" title="edit cart">Edit cart</a>
+                </div>
+                <a href="#" class="text">Our Shipping & Return Policy</a>
+            </div>
+            <!-- End cart bottom -->
+        </div>
+    </div>
+    <!-- End cart -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">SEARCH HERE</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group">
+                        <form method="get" class="searchform" action="/search" role="search">
+                            <input type="hidden" name="type" value="product">
+                            <input type="text" name="q" class="form-control control-search">
+                            <span class="input-group-btn">
+                              <button class="btn btn-default button_search" type="button"><i data-toggle="dropdown" class="fa fa-search"></i></button>
+                            </span>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--END  Modal content-->
+    <div class="wrappage">
+        <header id="header" class="header-v4 header-top-absolute home-clean">
+            <div class="sticky-header border-grey-bottom text-center hidden-xs hidden-sm">
+                <div class="text">
+                    <span class="u-line">Free shipping and returns</span> on all orders above $200
+                </div>
+            </div>
+            <div class="topbar">
+                <div class="container container-40">
+                    <div class="topbar-left">
+                        <div class="topbar-option">
+                            <div class="topbar-account">
+                                <a href="#"><i class="icon-user f-15"></i></a>
+                            </div>
+                            <div class="topbar-wishlist">
+                                <a href="#">
+                                <i class="icon-heart f-15"></i>
+                                <span class="count wishlist-count">0</span>
+                            </a>
+                            </div>
+                        </div>
+                        <!--end topbar-option-->
+                    </div>
+                    <!--end topbar-left-->
+                    <div class="topbar-right">
+                        <div class="topbar-option">
+                            <div class="topbar-search">
+                                <div class="search-popup dropdown" data-toggle="modal" data-target="#myModal">
+                                    <a href="#"><i class="icon-magnifier f-15"></i></a>
+                                </div>
+                            </div>
+                            <div class="topbar-cart">
+                                <a href="#" class="icon-cart">
+                                <i class="icon-basket f-15"></i>
+                                <span class="count cart-count">0</span>
+                            </a>
+                            </div>
+                        </div>
+                        <!--end topbar-option-->
+                    </div>
+                    <!--end topbar-right-->
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </header>
+        {% block content %}{% endblock %}
+        <footer>
+            <div class="container container-42">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+                        <div class="menu-footer">
+                            <ul>
+                                <li><a href="#">Shipping</a></li>
+                                <li><a href="#">Terms & Conditions</a></li>
+                                <li><a href="#">Privacy Policy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+                        <div class="newletter-form">
+                            <h3 class="footer-title text-center">Newsletter</h3>
+                            <form action="#">
+                                <input type="text" name="s" placeholder="Email Adress..." class="form-control">
+                                <button type="submit" class="btn btn-submit">
+                                    <i class="fa fa-angle-right"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4">
+                        <div class="social">
+                            <a href="#" title="twitter">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                            <a href="#" title="facebook">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                            <a href="#" title="google plus">
+                            <i class="fa fa-google-plus"></i>
+                        </a>
+                            <a href="#" title="Pinterest">
+                            <i class="fa fa-pinterest-p"></i>
+                        </a>
+                            <a href="#" title="rss">
+                            <i class="fa fa-rss"></i>
+                        </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <a href="#" class="scroll_top">SCROLL TO TOP<span></span></a>
+    <script src='{% static "js/jquery.js" %}'></script>
+    <script src='{% static "js/bootstrap.js" %}'></script>
+    <script src='{% static "js/owl.carousel.min.js" %}'></script>
+    <script src='{% static "js/slick.min.js" %}'></script>
+    <script src='{% static "js/masonry.pkgd.min.js" %}'></script>
+    <script src='{% static "js/main.js" %}'></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+.cenn {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.action {
+    display: flex;
+}
+
+.center-heart {
+    align-items: center;
+    display: flex !important;
+    justify-content: center;
+}
+
+.product-col {
+    height: auto !important;
+    width: auto !important;
+}
+
+.action {
+    display: flex;
+    justify-content: right;
+}
+
+.slick-slider {
+    height: 80% !important;
+}

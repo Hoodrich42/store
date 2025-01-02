@@ -1,4 +1,7 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
+
+from users.models import User
 
 
 class ProductCategory(models.Model):
@@ -59,4 +62,19 @@ class ProductImages(models.Model):
     class Meta:
         verbose_name = 'Картинка товара'
         verbose_name_plural = 'Картинки товара'
+
+
+class Rewiew(models.Model):
+    user = models.ForeignKey(to=User, on_delete=models.CASCADE)
+    points = models.SmallIntegerField()
+    description = models.TextField(null=True, blank=True)
+    product = models.ForeignKey(to=Products, on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = 'Отзыв товара'
+        verbose_name_plural = 'Отзывы товара'
+
+    def __str__(self):
+        return f'Отзыв для товара: {self.product.name} | Оценка: {self.points}'
+
 
