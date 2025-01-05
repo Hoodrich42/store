@@ -184,7 +184,7 @@ jQuery(document).ready(function($) {
     });
     // Js product single slider
     $('.js-click-product').slick({
-        slidesToShow: 6,
+        slidesToShow: 5,
         slidesToScroll: 1,
         asNavFor: '.js-product-slider',
         dots: false,

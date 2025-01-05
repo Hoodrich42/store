@@ -28,3 +28,7 @@
 .slick-slider {
     height: 80% !important;
 }
+
+.single-product-tab .nav-tabs {
+    margin-bottom: 0px !important;
+}

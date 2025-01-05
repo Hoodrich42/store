@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
@@ -59,9 +60,21 @@ class ProductImages(models.Model):
     product = models.ForeignKey(to=Products, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='products_images')
 
+    def count_images(self):
+        count = ProductImages.objects.filter(product_id=self.product.id).count()
+        if count >= 5:
+            raise ValidationError(f'Можно добавить не более 5 изображений')
+
+    def save(self, *args, **kwargs):
+        self.count_images()
+        super(ProductImages, self).save(*args, **kwargs)
+
     class Meta:
         verbose_name = 'Картинка товара'
         verbose_name_plural = 'Картинки товара'
+
+    def __str__(self):
+        return f'Картинка для {self.product.name}'
 
 
 class Rewiew(models.Model):
