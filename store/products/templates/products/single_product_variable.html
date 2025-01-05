@@ -14,7 +14,7 @@
             </ul>
         </div>
         <div class="container">
-            <div class="single-product-detail product-bundle space-50">
+            <div class="single-product-detail product-bundle">
                 <div class="row">
                     <div class="col-xs-12 col-sm-5 col-md-6">
                         <div class="product-images">
@@ -38,19 +38,29 @@
                         <div class="single-product-info">
                             <div class="rating-star">
                                 <div class="icon-rating"><span class="star-5"></span>
-                                    <span class="star star-5"></span>
-                                    <span class="star star-4"></span>
-                                    <span class="star star-3"></span>
-                                    <span class="star star-2"></span>
-                                    <span class="star star-1"></span>
+                                    {% if avarage_points >= 5 %}
+                                            <span class="star star-5"></span>
+                                        {% endif %}
+                                        {% if avarage_points >= 4 %}
+                                            <span class="star star-4"></span>
+                                        {% endif %}
+                                        {% if avarage_points >= 3 %}
+                                            <span class="star star-3"></span>
+                                        {% endif %}
+                                        {% if avarage_points >= 2 %}
+                                            <span class="star star-2"></span>
+                                        {% endif %}
+                                        {% if avarage_points >= 1 %}
+                                            <span class="star star-1"></span>
+                                        {% endif %}
                                 </div>
-                                <span class="review">(1 customer review)</span>
+                                <span class="review">({{ reviews_count }} customer review)</span>
                             </div>
                             <h3 class="product-title space-pm"><a href="#">{{ product.name }}</a></h3>
                             <div class="product-price">
                                 <span>₽{{ product.price }}</span>
                             </div>
-                            <p class="product-desc">{{ product.description }}</p>
+<!--                            <p class="product-desc">{{ product.description }}</p>-->
                             <div class="form-group">
                                 <label for="color">Color</label>
                                 <select class="form-control" id="color">
@@ -100,14 +110,45 @@
             <div class="single-product-tab ver2">
                 <ul class="nav nav-tabs text-center">
                     <li class="active"><a data-toggle="pill" href="#info">Description</a></li>
-                    <li><a data-toggle="pill" href="#review">Reviews (1)</a></li>
+                    <li><a data-toggle="pill" href="#review">Reviews ({{ reviews_count }})</a></li>
                 </ul>
                 <div class="tab-content">
                     <div id="info" class="tab-pane fade in active">
-                        <p class="p-center space-padding-tb-30">Constructed in cotton sweat fabric, this lovely piece, lacus eu mattis auctor, dolor lectus venenatis nulla, at tristique eros sem vel ante. Sed leo enim, iaculis ornare tristique non, vulputate sit amet ante. Mauris placerat eleifend leo.</p>
+                        <p class="p-center space-padding-tb-30">{{ product.description }}</p>
                     </div>
                     <div id="review" class="tab-pane fade in ">
-                        <p class="p-center space-padding-tb-30">Constructed in cotton sweat fabric, this lovely piece, lacus eu mattis auctor, dolor lectus venenatis nulla, at tristique eros sem vel ante. Sed leo enim, iaculis ornare tristique non, vulputate sit amet ante. Mauris placerat eleifend leo.</p>
+                        <div class="all-reviews">
+                            {% for review in reviews %}
+                                <div class="review">
+                                    <div class="review-wrapper">
+                                        <p>{{ review.user }}</p>
+                                        <div class="icon-rating"><span class="star-5"></span>
+                                            {% if review.points >= 5 %}
+                                                <span class="star star-5"></span>
+                                            {% endif %}
+                                            {% if review.points >= 4 %}
+                                                <span class="star star-4"></span>
+                                            {% endif %}
+                                            {% if review.points >= 3 %}
+                                                <span class="star star-3"></span>
+                                            {% endif %}
+                                            {% if review.points >= 2 %}
+                                                <span class="star star-2"></span>
+                                            {% endif %}
+                                            {% if review.points >= 1 %}
+                                                <span class="star star-1"></span>
+                                            {% endif %}
+                                        </div>
+                                        <p>{{ review.date_create }}</p>
+                                    </div>
+
+                                    <p>{{ review.description }}</p>
+
+                                </div>
+    <!--                            <p class="p-center space-padding-tb-30">{{ review.user }}</p>-->
+    <!--                            <p class="p-center space-padding-tb-30">{{ review.description }}</p>-->
+                            {% endfor %}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -119,8 +160,7 @@
                     <a href="">004004</a>
                 </li>
                 <li class="info-center bd-rl text-center"><span>Categories :</span>
-                    <a href="">Hoodies</a>,
-                    <a href="">Accessories</a>
+                    <a href="">{{ product.category.name }}</a>
                 </li>
                 <li class="info-center text-center"><span>Tags :</span>
                     <a href="">Designer</a>,

@@ -32,3 +32,23 @@
 .single-product-tab .nav-tabs {
     margin-bottom: 0px !important;
 }
+
+.all-reviews {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.review-wrapper {
+    padding-right: 30px;
+    width: auto;
+}
+
+.review {
+    display: flex;
+    padding-bottom: 30px;
+    width: 50%;
+}

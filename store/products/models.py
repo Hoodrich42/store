@@ -1,6 +1,7 @@
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from datetime import datetime as dt
 
 from users.models import User
 
@@ -77,11 +78,25 @@ class ProductImages(models.Model):
         return f'Картинка для {self.product.name}'
 
 
-class Rewiew(models.Model):
+class ReciewsQuerySet(models.QuerySet):
+
+    def avarage_points(self):
+        return sum(review.points for review in self) / self.count()
+
+
+class Review(models.Model):
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
     points = models.SmallIntegerField()
     description = models.TextField(null=True, blank=True)
     product = models.ForeignKey(to=Products, on_delete=models.CASCADE)
+    created_timestamp = models.DateTimeField(auto_now_add=True)
+
+    objects = ReciewsQuerySet.as_manager()
+
+    def date_create(self):
+        date = self.created_timestamp
+        return date.strftime('%d.%m.%Y')
+
 
     class Meta:
         verbose_name = 'Отзыв товара'
