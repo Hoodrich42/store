@@ -19,7 +19,9 @@ class ProductView(DetailView):
         context['reviews'] = Review.objects.filter(product_id=context['product'].id)
         context['reviews_count'] = context['reviews'].count()
         context['avarage_points'] = context['reviews'].avarage_points()
-
-
+        context['related_cats'] = context['product'].get_type()
+        context['related_prods'] = []
+        for cat in context['related_cats']:
+            context['related_prods'] += Products.objects.filter(category_id=cat.id)
         return context
 
