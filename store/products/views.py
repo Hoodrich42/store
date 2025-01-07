@@ -1,11 +1,12 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views.generic.detail import DetailView
 
-from products.models import Products, ProductImages, Review
+from products.models import Product, ProductImages, Review, Basket
 
 
 class ProductView(DetailView):
-    model = Products
+    model = Product
     template_name = 'products/single_product_variable.html'
     pk_url_kwarg = 'product_id'
     context_object_name = 'product'
@@ -20,8 +21,22 @@ class ProductView(DetailView):
         context['reviews_count'] = context['reviews'].count()
         context['avarage_points'] = context['reviews'].avarage_points()
         context['related_cats'] = context['product'].get_type()
+        context['baskets'] = Basket.objects.filter(user=self.request.user)
         context['related_prods'] = []
         for cat in context['related_cats']:
-            context['related_prods'] += Products.objects.filter(category_id=cat.id)
+            context['related_prods'] += Product.objects.filter(category_id=cat.id)
         return context
 
+
+def basket_add(request, product_id):
+    product = Product.objects.get(id=product_id)
+    basket = Basket.objects.filter(user=request.user, product=product)
+
+    if not basket.exists():
+        Basket.objects.create(user=request.user, product=product, quantity=1)
+    else:
+        basket = basket.first()
+        basket.quantity += 1
+        basket.save()
+
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])

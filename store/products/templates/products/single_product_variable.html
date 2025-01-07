@@ -89,7 +89,7 @@
 <!--                                        <span class="plus-icon">+</span>-->
 <!--                                    </button>-->
 <!--                                </div>-->
-                                <a href="#" class="link-ver1 add-cart add-right">Add To Cart</a>
+                                <a href="{% url 'products:basket_add' product.id %}" class="link-ver1 add-cart add-right">Add To Cart</a>
                                 <a href="#" class="link-ver1 wish center-heart"><i class="icon-heart f-15"></i></a>
                                 <div class="clearfix"></div>
                             </div>
@@ -184,7 +184,7 @@
                                 <div class="product-after-switch">
                                     <div class="product-price">₽{{ rel.price }}</div>
                                     <div class="product-after-button">
-                                        <a href="#" class="addcart">ADD TO CART</a>
+                                        <a href="{% url 'products:basket_add' rel.id %}" class="addcart">ADD TO CART</a>
                                     </div>
                                 </div>
                                 <div class="rating-star">

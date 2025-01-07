@@ -17,74 +17,7 @@
 
 <body>
     <!--push menu cart -->
-    <div class="pushmenu pushmenu-left cart-box-container">
-        <div class="cart-list">
-            <span class="close-left js-close">x</span>
-            <h3 class="cart-title">Your Cart</h3>
-            <ul class="list">
-                <li>
-                    <a href="#" title="" class="cart-product-image"><img src='{% static "img/cart_1.jpg" %}' alt="Product"></a>
-                    <div class="text">
-                        <p class="product-name">Rose Gold Natural Band Watch</p>
-                        <p class="product-price">$295.00</p>
-                        <div class="quantity input-group">
-                            <button type="button" class="quantity-left-minus btn btn-number js-minus" data-type="minus" data-field="">
-                                <span class="minus-icon">-</span>
-                            </button>
-                            <input type="text" name="number" value="1" class="product_quantity_number js-number">
-                            <button type="button" class="quantity-right-plus btn btn-number js-plus" data-type="plus" data-field="">
-                                <span class="plus-icon">+</span>
-                            </button>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </li>
-                <li>
-                    <a href="#" title="" class="cart-product-image"><img src='{% static "img/cart_1.jpg" %}' alt="Product"></a>
-                    <div class="text">
-                        <p class="product-name">Dot Drop Earrings</p>
-                        <p class="product-price">$295.00</p>
-                        <div class="quantity input-group">
-                            <button type="button" class="quantity-left-minus btn btn-number js-minus" data-type="minus" data-field="">
-                                <span class="minus-icon">-</span>
-                            </button>
-                            <input type="text" name="number" value="1" class="product_quantity_number js-number">
-                            <button type="button" class="quantity-right-plus btn btn-number js-plus" data-type="plus" data-field="">
-                                <span class="plus-icon">+</span>
-                            </button>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </li>
-                <li>
-                    <a href="#" title="" class="cart-product-image"><img src='{% static "img/cart_1.jpg" %}' alt="Product"></a>
-                    <div class="text">
-                        <p class="product-name">Dot Drop Earrings</p>
-                        <p class="product-price">$295.00</p>
-                        <div class="quantity input-group">
-                            <button type="button" class="quantity-left-minus btn btn-number js-minus" data-type="minus" data-field="">
-                                <span class="minus-icon">-</span>
-                            </button>
-                            <input type="text" name="number" value="1" class="product_quantity_number js-number">
-                            <button type="button" class="quantity-right-plus btn btn-number js-plus" data-type="plus" data-field="">
-                                <span class="plus-icon">+</span>
-                            </button>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </li>
-            </ul>
-            <div class="cart-bottom">
-                <p class="total"><span>Subtotal</span> $560.00</p>
-                <div class="cart-button">
-                    <a class="checkout" href="#" title="">Check out</a>
-                    <a class="edit-cart" href="#" title="edit cart">Edit cart</a>
-                </div>
-                <a href="#" class="text">Our Shipping & Return Policy</a>
-            </div>
-            <!-- End cart bottom -->
-        </div>
-    </div>
+    {% include 'products/basket.html' %}
     <!-- End cart -->
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">

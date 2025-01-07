@@ -64,7 +64,7 @@ class ProductCategory(models.Model):
         return self.name
 
 
-class Products(models.Model):
+class Product(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
     price = models.DecimalField(max_digits=255, decimal_places=2)
@@ -95,7 +95,7 @@ class Products(models.Model):
 
 
 class ProductImages(models.Model):
-    product = models.ForeignKey(to=Products, on_delete=models.CASCADE)
+    product = models.ForeignKey(to=Product, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='products_images')
 
     def count_images(self):
@@ -128,7 +128,7 @@ class Review(models.Model):
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
     points = models.SmallIntegerField()
     description = models.TextField(null=True, blank=True)
-    product = models.ForeignKey(to=Products, on_delete=models.CASCADE)
+    product = models.ForeignKey(to=Product, on_delete=models.CASCADE)
     created_timestamp = models.DateTimeField(auto_now_add=True)
 
     objects = ReciewsQuerySet.as_manager()
@@ -144,5 +144,33 @@ class Review(models.Model):
 
     def __str__(self):
         return f'Отзыв для товара: {self.product.name} | Оценка: {self.points}'
+
+
+class BasketQuerySet(models.QuerySet):
+
+    def total_sum(self):
+        return sum(basket.sum() for basket in self)
+
+    def total_quantity(self):
+        return sum(basket.quantity for basket in self)
+
+
+class Basket(models.Model):
+    user = models.ForeignKey(to=User, on_delete=models.CASCADE)
+    product = models.ForeignKey(to=Product, on_delete=models.CASCADE)
+    quantity = models.PositiveSmallIntegerField(default=0)
+    created_timestamp = models.DateTimeField(auto_now_add=True)
+
+    objects = BasketQuerySet.as_manager()
+
+    class Meta:
+        verbose_name = 'Корзина'
+        verbose_name_plural = 'Корзина'
+
+    def __str__(self):
+        return f'Корзина для {self.user.email} | Продукт: {self.product.name}'
+
+    def sum(self):
+        return self.product.price * self.quantity
 
 

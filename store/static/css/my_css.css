@@ -52,3 +52,17 @@
     padding-bottom: 30px;
     width: 30%;
 }
+
+.btn-add-wishlist {
+    border: 1px solid grey;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+}
+
+.cart-list .list {
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: auto !important;
+    max-height: 480px !important;
+}
