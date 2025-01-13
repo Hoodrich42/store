@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block css %}
+    <link rel="stylesheet" href='{% static "css/my_css.css" %}'>
     <link rel="stylesheet" href='{% static "css/owl.theme.default.min.css" %}'>
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700,900" rel="stylesheet">
 {% endblock %}
@@ -35,7 +36,7 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-6">
                     <div class="banner-img">
-                        <a class="" href="#"><img src="img/banner_1.jpg" alt="banner" class="img-reponsive"></a>
+                        <a class="" href="#"><img src="{% static 'img/banner_1.jpg' %}" alt="banner" class="img-reponsive"></a>
                         <div class="banner-content">
                             <h3 class="banner-title">Summer Collection</h3>
                             <p>Free Shiping On All Oders</p>
@@ -44,7 +45,7 @@
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-6">
                     <div class="banner-img">
-                        <a class="" href="#"><img src="img/banner_2.jpg" alt="banner" class="img-reponsive"></a>
+                        <a class="" href="#"><img src="{% static 'img/banner_2.jpg' %}" alt="banner" class="img-reponsive"></a>
                         <div class="banner-content">
                             <h3 class="banner-title">Man Collection</h3>
                             <p>Free Shiping On All Oders</p>
@@ -59,355 +60,79 @@
             <div class="container container-40">
                 <h3 class="heading-v2 text-center">Featured Products</h3>
                 <div class="row">
-                    <div class="col-md-15 col-sm-3 col-xs-6 product-item">
-                        <div class="product-images">
-                            <a href="#" class="hover-images effect"><img src="img/products/shortshirt.jpg" alt="photo" class="img-reponsive"></a>
-                            <a href="#" class="btn-add-wishlist ver2"><i class="icon-heart"></i></a>
-                            <a href="#" class="btn-quickview">QUICK VIEW</a>
-                        </div>
-                        <div class="product-info-ver2">
-                            <h3 class="product-title"><a href="#">The Turtleneck</a></h3>
-                            <div class="product-after-switch">
-                                <div class="product-price">$295.00</div>
-                                <div class="product-after-button">
-                                    <a href="#" class="addcart">ADD TO CART</a>
+                    {% for product in products %}
+                        <div class="col-md-15 col-sm-3 col-xs-6 product-item">
+                            <div class="product-images">
+                                <a href="#" class="hover-images effect"><img src="{{ product.get_img.image.url }}" alt="photo" class="img-reponsive"></a>
+                                <a href="#" class="btn-add-wishlist ver2"><i class="icon-heart"></i></a>
+                                <a href="#" class="btn-quickview">QUICK VIEW</a>
+                            </div>
+                            <div class="product-info-ver2">
+                                <h3 class="product-title"><a href="#">{{ product.name }}</a></h3>
+                                <div class="product-after-switch">
+                                    <div class="product-price">₽{{ product.price }}</div>
+                                    <div class="product-after-button">
+                                        <a href="#" class="addcart">ADD TO CART</a>
+                                    </div>
+                                </div>
+                                <div class="rating-star">
+                                    {% if product.points >= 5 %}
+                                        <span class="star star-5"></span>
+                                    {% endif %}
+                                    {% if product.points >= 4 %}
+                                        <span class="star star-4"></span>
+                                    {% endif %}
+                                    {% if product.points >= 3 %}
+                                        <span class="star star-3"></span>
+                                    {% endif %}
+                                    {% if product.points >= 2 %}
+                                        <span class="star star-2"></span>
+                                    {% endif %}
+                                    {% if product.points >= 1 %}
+                                        <span class="star star-1"></span>
+                                    {% endif %}
                                 </div>
                             </div>
-                            <div class="rating-star">
-                                <span class="star star-5"></span>
-                                <span class="star star-4"></span>
-                                <span class="star star-3"></span>
-                                <span class="star star-2"></span>
-                                <span class="star star-1"></span>
-                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-15 col-sm-3 col-xs-6 product-item">
-                        <div class="product-images">
-                            <a href="#" class="hover-images effect"><img src="img/products/hat_2.jpg" alt="photo" class="img-reponsive"></a>
-                            <a href="#" class="btn-add-wishlist ver2"><i class="icon-heart"></i></a>
-                            <a href="#" class="btn-quickview">QUICK VIEW</a>
-                        </div>
-                        <div class="product-info-ver2">
-                            <h3 class="product-title"><a href="#">Rose Gold/Natural Band Watch</a></h3>
-                            <div class="product-after-switch">
-                                <div class="product-price">$295.00</div>
-                                <div class="product-after-button">
-                                    <a href="#" class="addcart">ADD TO CART</a>
-                                </div>
-                            </div>
-                            <div class="rating-star">
-                                <span class="star star-5"></span>
-                                <span class="star star-4"></span>
-                                <span class="star star-3"></span>
-                                <span class="star star-2"></span>
-                                <span class="star star-1"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-15 col-sm-3 col-xs-6 product-item">
-                        <div class="product-images">
-                            <a href="#" class="hover-images effect"><img src="img/products/tshirt.jpg" alt="photo" class="img-reponsive"></a>
-                            <a href="#" class="btn-add-wishlist ver2"><i class="icon-heart"></i></a>
-                            <a href="#" class="btn-quickview">QUICK VIEW</a>
-                        </div>
-                        <div class="product-info-ver2">
-                            <h3 class="product-title"><a href="#">Sk8 Mid Moc CA Oyster Grey</a></h3>
-                            <div class="product-after-switch">
-                                <div class="product-price">$295.00</div>
-                                <div class="product-after-button">
-                                    <a href="#" class="addcart">ADD TO CART</a>
-                                </div>
-                            </div>
-                            <div class="rating-star">
-                                <span class="star star-5"></span>
-                                <span class="star star-4"></span>
-                                <span class="star star-3"></span>
-                                <span class="star star-2"></span>
-                                <span class="star star-1"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-15 col-sm-3 col-xs-6 product-item">
-                        <div class="product-images">
-                            <a href="#" class="hover-images effect"><img src="img/products/sneaker.jpg" alt="photo" class="img-reponsive"></a>
-                            <a href="#" class="btn-add-wishlist ver2"><i class="icon-heart"></i></a>
-                            <a href="#" class="btn-quickview">QUICK VIEW</a>
-                        </div>
-                        <div class="product-info-ver2">
-                            <h3 class="product-title"><a href="#">Dot Drop Earrings</a></h3>
-                            <div class="product-after-switch">
-                                <div class="product-price">$295.00</div>
-                                <div class="product-after-button">
-                                    <a href="#" class="addcart">ADD TO CART</a>
-                                </div>
-                            </div>
-                            <div class="rating-star">
-                                <span class="star star-5"></span>
-                                <span class="star star-4"></span>
-                                <span class="star star-3"></span>
-                                <span class="star star-2"></span>
-                                <span class="star star-1"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-15 col-sm-3 col-xs-6 product-item">
-                        <div class="product-images">
-                            <a href="#" class="hover-images effect"><img src="img/products/longcoat_g.jpg" alt="photo" class="img-reponsive"></a>
-                            <a href="#" class="btn-add-wishlist ver2"><i class="icon-heart"></i></a>
-                            <a href="#" class="btn-quickview">QUICK VIEW</a>
-                        </div>
-                        <div class="product-info-ver2">
-                            <h3 class="product-title"><a href="#">Bells of Ireland Jumpsuit</a></h3>
-                            <div class="product-after-switch">
-                                <div class="product-price">$295.00</div>
-                                <div class="product-after-button">
-                                    <a href="#" class="addcart">ADD TO CART</a>
-                                </div>
-                            </div>
-                            <div class="rating-star">
-                                <span class="star star-5"></span>
-                                <span class="star star-4"></span>
-                                <span class="star star-3"></span>
-                                <span class="star star-2"></span>
-                                <span class="star star-1"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-15 col-sm-3 col-xs-6 product-item">
-                        <div class="product-images">
-                            <a href="#" class="hover-images effect"><img src="img/products/highheels.jpg" alt="photo" class="img-reponsive"></a>
-                            <a href="#" class="btn-add-wishlist ver2"><i class="icon-heart"></i></a>
-                            <a href="#" class="btn-quickview">QUICK VIEW</a>
-                        </div>
-                        <div class="product-info-ver2">
-                            <h3 class="product-title"><a href="#">The Turtleneck</a></h3>
-                            <div class="product-after-switch">
-                                <div class="product-price">$295.00</div>
-                                <div class="product-after-button">
-                                    <a href="#" class="addcart">ADD TO CART</a>
-                                </div>
-                            </div>
-                            <div class="rating-star">
-                                <span class="star star-5"></span>
-                                <span class="star star-4"></span>
-                                <span class="star star-3"></span>
-                                <span class="star star-2"></span>
-                                <span class="star star-1"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-15 col-sm-3 col-xs-6 product-item">
-                        <div class="product-images">
-                            <a href="#" class="hover-images effect"><img src="img/products/hoodie.jpg" alt="photo" class="img-reponsive"></a>
-                            <a href="#" class="btn-add-wishlist ver2"><i class="icon-heart"></i></a>
-                            <a href="#" class="btn-quickview">QUICK VIEW</a>
-                        </div>
-                        <div class="product-info-ver2">
-                            <h3 class="product-title"><a href="#">Rose Gold/Natural Band Watch</a></h3>
-                            <div class="product-after-switch">
-                                <div class="product-price">$295.00</div>
-                                <div class="product-after-button">
-                                    <a href="#" class="addcart">ADD TO CART</a>
-                                </div>
-                            </div>
-                            <div class="rating-star">
-                                <span class="star star-5"></span>
-                                <span class="star star-4"></span>
-                                <span class="star star-3"></span>
-                                <span class="star star-2"></span>
-                                <span class="star star-1"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-15 col-sm-3 col-xs-6 product-item">
-                        <div class="product-images">
-                            <a href="#" class="hover-images effect"><img src="img/products/bag_1.jpg" alt="photo" class="img-reponsive"></a>
-                            <a href="#" class="btn-add-wishlist ver2"><i class="icon-heart"></i></a>
-                            <a href="#" class="btn-quickview">QUICK VIEW</a>
-                        </div>
-                        <div class="product-info-ver2">
-                            <h3 class="product-title"><a href="#">Sk8 Mid Moc CA Oyster Grey</a></h3>
-                            <div class="product-after-switch">
-                                <div class="product-price">$295.00</div>
-                                <div class="product-after-button">
-                                    <a href="#" class="addcart">ADD TO CART</a>
-                                </div>
-                            </div>
-                            <div class="rating-star">
-                                <span class="star star-5"></span>
-                                <span class="star star-4"></span>
-                                <span class="star star-3"></span>
-                                <span class="star star-2"></span>
-                                <span class="star star-1"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-15 col-sm-3 col-xs-6 product-item">
-                        <div class="product-images">
-                            <a href="#" class="hover-images effect"><img src="img/products/long.jpg" alt="photo" class="img-reponsive"></a>
-                            <a href="#" class="btn-add-wishlist ver2"><i class="icon-heart"></i></a>
-                            <a href="#" class="btn-quickview">QUICK VIEW</a>
-                        </div>
-                        <div class="product-info-ver2">
-                            <h3 class="product-title"><a href="#">Dot Drop Earrings</a></h3>
-                            <div class="product-after-switch">
-                                <div class="product-price">$295.00</div>
-                                <div class="product-after-button">
-                                    <a href="#" class="addcart">ADD TO CART</a>
-                                </div>
-                            </div>
-                            <div class="rating-star">
-                                <span class="star star-5"></span>
-                                <span class="star star-4"></span>
-                                <span class="star star-3"></span>
-                                <span class="star star-2"></span>
-                                <span class="star star-1"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-15 col-sm-3 col-xs-6 product-item">
-                        <div class="product-images">
-                            <a href="#" class="hover-images effect"><img src="img/products/sunglasses_1.jpg" alt="photo" class="img-reponsive"></a>
-                            <a href="#" class="btn-add-wishlist ver2"><i class="icon-heart"></i></a>
-                            <a href="#" class="btn-quickview">QUICK VIEW</a>
-                        </div>
-                        <div class="product-info-ver2">
-                            <h3 class="product-title"><a href="#">Bells of Ireland Jumpsuit</a></h3>
-                            <div class="product-after-switch">
-                                <div class="product-price">$295.00</div>
-                                <div class="product-after-button">
-                                    <a href="#" class="addcart">ADD TO CART</a>
-                                </div>
-                            </div>
-                            <div class="rating-star">
-                                <span class="star star-5"></span>
-                                <span class="star star-4"></span>
-                                <span class="star star-3"></span>
-                                <span class="star star-2"></span>
-                                <span class="star star-1"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-15 col-sm-3 col-xs-6 product-item">
-                        <div class="product-images">
-                            <a href="#" class="hover-images effect"><img src="img/products/mixhoodie.jpg" alt="photo" class="img-reponsive"></a>
-                            <a href="#" class="btn-add-wishlist ver2"><i class="icon-heart"></i></a>
-                            <a href="#" class="btn-quickview">QUICK VIEW</a>
-                        </div>
-                        <div class="product-info-ver2">
-                            <h3 class="product-title"><a href="#">The Turtleneck</a></h3>
-                            <div class="product-after-switch">
-                                <div class="product-price">$295.00</div>
-                                <div class="product-after-button">
-                                    <a href="#" class="addcart">ADD TO CART</a>
-                                </div>
-                            </div>
-                            <div class="rating-star">
-                                <span class="star star-5"></span>
-                                <span class="star star-4"></span>
-                                <span class="star star-3"></span>
-                                <span class="star star-2"></span>
-                                <span class="star star-1"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-15 col-sm-3 col-xs-6 product-item">
-                        <div class="product-images">
-                            <a href="#" class="hover-images effect"><img src="img/products/bag_2.jpg" alt="photo" class="img-reponsive"></a>
-                            <a href="#" class="btn-add-wishlist ver2"><i class="icon-heart"></i></a>
-                            <a href="#" class="btn-quickview">QUICK VIEW</a>
-                        </div>
-                        <div class="product-info-ver2">
-                            <h3 class="product-title"><a href="#">Rose Gold/Natural Band Watch</a></h3>
-                            <div class="product-after-switch">
-                                <div class="product-price">$295.00</div>
-                                <div class="product-after-button">
-                                    <a href="#" class="addcart">ADD TO CART</a>
-                                </div>
-                            </div>
-                            <div class="rating-star">
-                                <span class="star star-5"></span>
-                                <span class="star star-4"></span>
-                                <span class="star star-3"></span>
-                                <span class="star star-2"></span>
-                                <span class="star star-1"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-15 col-sm-3 col-xs-6 product-item">
-                        <div class="product-images">
-                            <a href="#" class="hover-images effect"><img src="img/products/hoodie_w.jpg" alt="photo" class="img-reponsive"></a>
-                            <a href="#" class="btn-add-wishlist ver2"><i class="icon-heart"></i></a>
-                            <a href="#" class="btn-quickview">QUICK VIEW</a>
-                        </div>
-                        <div class="product-info-ver2">
-                            <h3 class="product-title"><a href="#">Sk8 Mid Moc CA Oyster Grey</a></h3>
-                            <div class="product-after-switch">
-                                <div class="product-price">$295.00</div>
-                                <div class="product-after-button">
-                                    <a href="#" class="addcart">ADD TO CART</a>
-                                </div>
-                            </div>
-                            <div class="rating-star">
-                                <span class="star star-5"></span>
-                                <span class="star star-4"></span>
-                                <span class="star star-3"></span>
-                                <span class="star star-2"></span>
-                                <span class="star star-1"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-15 col-sm-3 col-xs-6 product-item">
-                        <div class="product-images">
-                            <a href="#" class="hover-images effect"><img src="img/products/sunglasses_2.jpg" alt="photo" class="img-reponsive"></a>
-                            <a href="#" class="btn-add-wishlist ver2"><i class="icon-heart"></i></a>
-                            <a href="#" class="btn-quickview">QUICK VIEW</a>
-                        </div>
-                        <div class="product-info-ver2">
-                            <h3 class="product-title"><a href="#">Dot Drop Earrings</a></h3>
-                            <div class="product-after-switch">
-                                <div class="product-price">$295.00</div>
-                                <div class="product-after-button">
-                                    <a href="#" class="addcart">ADD TO CART</a>
-                                </div>
-                            </div>
-                            <div class="rating-star">
-                                <span class="star star-5"></span>
-                                <span class="star star-4"></span>
-                                <span class="star star-3"></span>
-                                <span class="star star-2"></span>
-                                <span class="star star-1"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-15 col-sm-3 col-xs-6 product-item">
-                        <div class="product-images">
-                            <a href="#" class="hover-images effect"><img src="img/products/sweater_w.jpg" alt="photo" class="img-reponsive"></a>
-                            <a href="#" class="btn-add-wishlist ver2"><i class="icon-heart"></i></a>
-                            <a href="#" class="btn-quickview">QUICK VIEW</a>
-                        </div>
-                        <div class="product-info-ver2">
-                            <h3 class="product-title"><a href="#">Bells of Ireland Jumpsuit</a></h3>
-                            <div class="product-after-switch">
-                                <div class="product-price">$295.00</div>
-                                <div class="product-after-button">
-                                    <a href="#" class="addcart">ADD TO CART</a>
-                                </div>
-                            </div>
-                            <div class="rating-star">
-                                <span class="star star-5"></span>
-                                <span class="star star-4"></span>
-                                <span class="star star-3"></span>
-                                <span class="star star-2"></span>
-                                <span class="star star-1"></span>
-                            </div>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
-                <div class="button-v v7 text-center">
-                    <a class="btn-loadmore"><i class="icon-refresh f-15"></i>Load more</a>
+                <div class="pagination">
+                    <span class="step-links">
+
+
+                        <span class="current pag-numbers">
+                            {% if page_obj.has_previous %}
+                                <a href="?page={{page_obj.previous_page_number}}">Назад</a>
+                            {% endif %}
+                            {% if page_obj.number != 1 %}
+                                <a href="?page=1">1</a>
+                            {% endif %}
+                            {% if page_obj.previous_page_number != "1"|add:"1" and page_obj.previous_page_number != 1 %}
+                                <p>...</p>
+                            {% endif %}
+                            {% if page_obj.previous_page_number != 1 %}
+                                <a href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+                            {% endif %}
+                            <p class="current-pg">{{ page_obj.number }}</p>
+                            {% if page_obj.next_page_number != page_obj.paginator.num_pages %}
+                                <a href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
+                            {% endif %}
+                            {% if page_obj.next_page_number|add:"1" != page_obj.paginator.num_pages and page_obj.next_page_number != page_obj.paginator.num_pages%}
+                                <p>...</p>
+                            {% endif %}
+                            {% if page_obj.number != page_obj.paginator.num_pages %}
+                                <a href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
+                            {% endif %}
+                            {% if page_obj.has_next %}
+                                <a href="?page={{page_obj.next_page_number}}">Дальше</a>
+                            {% endif %}
+                        </span>
+
+                    </span>
                 </div>
+<!--                <div class="button-v v7 text-center">-->
+<!--                    <a class="btn-loadmore"><i class="icon-refresh f-15"></i>Load more</a>-->
+<!--                </div>-->
             </div>
         </div>
         <!--end wrapper product-->

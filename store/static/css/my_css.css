@@ -66,3 +66,33 @@
     height: auto !important;
     max-height: 480px !important;
 }
+
+.pagination {
+    display: flex !important;
+    width: 100% !important;
+    justify-content: center;
+}
+
+.pag-numbers {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.current-pg {
+    font-weight: bold;
+}
+
+.pag-numbers > p, .pag-numbers > a {
+    font-size: 16px;
+    padding: 5px;
+    height: auto;
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 50px;
+    min-height: 50px;
+    margin-left: 5px;
+    border: 1px solid grey !important;
+}

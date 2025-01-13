@@ -55,6 +55,7 @@ class ProductCategory(models.Model):
     name = models.CharField(max_length=255, unique=True)
     type = models.ForeignKey(to=TypeOfProduct, on_delete=models.CASCADE)
     description = models.TextField(null=True, blank=True)
+    slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name='URL')
 
     class Meta:
         verbose_name = 'Категория'

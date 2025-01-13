@@ -1,6 +1,8 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views.generic.detail import DetailView
+from django.views.generic.list import ListView
+from django.core.paginator import Paginator
 
 from products.models import Product, ProductImages, Review, Basket
 
@@ -13,7 +15,6 @@ class ProductView(DetailView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        print(context)
         context['colors'] = context['product'].color.all()
         context['sizes'] = context['product'].size.all()
         context['images'] = ProductImages.objects.filter(product_id=context['product'].id)
@@ -40,3 +41,30 @@ def basket_add(request, product_id):
         basket.save()
 
     return HttpResponseRedirect(request.META['HTTP_REFERER'])
+
+
+class ProductsList(ListView):
+    model = Product
+    paginate_by = 30
+    context_object_name = 'products'
+    template_name = 'products/home_clean.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+
+class ProductsCategoryList(ListView):
+    model = Product
+    paginate_by = 30
+    slug_url_kwarg = 'category_slug'
+    context_object_name = 'products'
+    template_name = 'products/home_clean.html'
+
+    def get_queryset(self):
+        return Product.objects.filter(category__slug=self.kwargs['category_slug'])
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
