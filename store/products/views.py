@@ -4,7 +4,8 @@ from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.core.paginator import Paginator
 
-from products.models import Product, ProductImages, Review, Basket
+from .models import Product, ProductImages, Review, Basket, ProductCategory
+from .utils import DataMixin
 
 
 class ProductView(DetailView):
@@ -43,7 +44,7 @@ def basket_add(request, product_id):
     return HttpResponseRedirect(request.META['HTTP_REFERER'])
 
 
-class ProductsList(ListView):
+class ProductsList(DataMixin, ListView):
     model = Product
     paginate_by = 30
     context_object_name = 'products'
@@ -51,7 +52,8 @@ class ProductsList(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        return context
+        c_def = self.get_user_context()
+        return dict(list(context.items()) + list(c_def.items()))
 
 
 class ProductsCategoryList(ListView):

@@ -43,6 +43,9 @@ class Sex(models.Model):
 class TypeOfProduct(models.Model):
     name = models.CharField(max_length=255, unique=True)
 
+    def get_categories(self):
+        return ProductCategory.objects.filter(type=self)
+
     def __str__(self):
         return f'{self.name}'
 
@@ -116,7 +119,7 @@ class ProductImages(models.Model):
         return f'Картинка для {self.product.name}'
 
 
-class ReciewsQuerySet(models.QuerySet):
+class ReviewsQuerySet(models.QuerySet):
 
     def avarage_points(self):
         if len(self) > 0:
@@ -132,7 +135,7 @@ class Review(models.Model):
     product = models.ForeignKey(to=Product, on_delete=models.CASCADE)
     created_timestamp = models.DateTimeField(auto_now_add=True)
 
-    objects = ReciewsQuerySet.as_manager()
+    objects = ReviewsQuerySet.as_manager()
 
     def date_create(self):
         date = self.created_timestamp

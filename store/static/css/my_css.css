@@ -96,3 +96,26 @@
     margin-left: 5px;
     border: 1px solid grey !important;
 }
+
+.row {
+    margin-top: 50px;
+}
+
+.topbar-center {
+    width: auto !important;
+    height: 50px;
+    margin: 0px auto;
+
+}
+
+.logo {
+    width: 120px;
+}
+
+.drop-menu {
+    display: none;
+}
+
+.topbar:hover {
+    backgroud-image: black;
+}
