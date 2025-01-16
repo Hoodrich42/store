@@ -8,7 +8,7 @@ from .models import Product, ProductImages, Review, Basket, ProductCategory
 from .utils import DataMixin
 
 
-class ProductView(DetailView):
+class ProductView(DataMixin, DetailView):
     model = Product
     template_name = 'products/single_product_variable.html'
     pk_url_kwarg = 'product_id'
@@ -27,7 +27,8 @@ class ProductView(DetailView):
         context['related_prods'] = []
         for cat in context['related_cats']:
             context['related_prods'] += Product.objects.filter(category_id=cat.id)
-        return context
+        c_def = self.get_user_context()
+        return dict(list(context.items()) + list(c_def.items()))
 
 
 def basket_add(request, product_id):
@@ -56,7 +57,7 @@ class ProductsList(DataMixin, ListView):
         return dict(list(context.items()) + list(c_def.items()))
 
 
-class ProductsCategoryList(ListView):
+class ProductsCategoryList(DataMixin, ListView):
     model = Product
     paginate_by = 30
     slug_url_kwarg = 'category_slug'
@@ -68,5 +69,6 @@ class ProductsCategoryList(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        return context
+        c_def = self.get_user_context()
+        return dict(list(context.items()) + list(c_def.items()))
 
